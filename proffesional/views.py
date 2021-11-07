@@ -1,3 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import redirect,render
+from . import models
 
-# Create your views here.
+
+def mainView(request):
+    template_file = "proffesional/main.html"
+
+    option = {
+
+    }
+    return render(request, template_file, option)
+
+def result(request):
+    template_file = "proffesional/result.html"
+
+    option = {
+
+    }
+    return render(request, template_file, option)
