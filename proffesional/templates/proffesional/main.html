@@ -1,8 +1,13 @@
 {% extends 'proffesional/base.html' %}
 
 {% block content %}
-
-<h1>留年抑制アプリ</h1>
-<button type="submit" class="btn btn-primary">押してくだちい</button>
+<body class="main-background">
+    <input type="file" class="dropify"  data-default-file="url_of_your_file" />  
+    <script>
+        $(document).ready(function(){
+        $('.dropify').dropify();
+        });
+    </script>
+</body>
 
 {% endblock %}

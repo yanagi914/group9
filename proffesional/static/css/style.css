@@ -1,3 +1,85 @@
-h1 {
-    color:blue;
+@font-face {
+    font-family: 'Myfont';
+    src: url('../fonts/genkai-mincho.ttf');
 }
+
+.title-background {
+    animation: gimmick-bg-color 7.5s infinite;
+    
+}
+
+@keyframes gimmick-bg-color{
+    0% {
+        background-color: #261c19;
+    }
+    50% {
+        background-color: #600;
+    }
+    100% {
+        background-color: #261c19;
+    }
+    
+}
+
+
+
+.title {
+    font-size: 4em;
+    font-family: 'Myfont';
+    color: white;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:800px;
+    margin: 0 auto;
+}
+
+.part {
+    color:red;
+}
+
+.container {
+    text-align: center;
+}
+
+.button-7{
+    width:300px;
+    height:50px;
+    justify-content: center;
+    border:2px solid #34495e;
+    float:left;
+    text-align:center;
+    cursor:pointer;
+    position:relative;
+    box-sizing:border-box;
+    overflow:hidden;
+    margin:0 400px;
+  }
+  .button-7 a{
+    font-family:Myfont;
+    font-size:30px;
+    color:#34495e;
+    text-decoration:none;
+    line-height:50px;
+    transition:all .5s ease;
+    /*z-index:2;*/
+    position:relative;
+  }
+  .eff-7{
+    width:300px;
+    height:50px;
+    border:0px solid #34495e;
+    position:absolute;
+    transition:all .5s ease;
+    /*z-index:1;*/
+    box-sizing:border-box;
+    
+  }
+  .button-7:hover .eff-7{
+    border:50px solid #34495e;
+  }
+  .button-7:hover a{
+    color:#fff;
+  }
+  

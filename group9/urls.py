@@ -20,5 +20,5 @@ from django.urls import include
 app_name = 'proffesional'
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('proffesional/', include('proffesional.urls')),
+    path('', include('proffesional.urls')),
 ]
