@@ -17,3 +17,11 @@ def result(request):
 
     }
     return render(request, template_file, option)
+
+def csv_test(request):
+    template_file = "proffesional/csv_test.html"
+
+    option = {
+
+    }
+    return render(request, template_file, option)
