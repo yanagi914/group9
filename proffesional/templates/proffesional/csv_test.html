@@ -4,15 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <title>csvテスト用</title>
+    <!--
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/style.css">
+    -->
+    <link rel="stylesheet" href="http://cdn.rawgit.com/JeremyFagis/dropify/master/dist/css/dropify.css"/>  
+    <script src="http://cdn.rawgit.com/JeremyFagis/dropify/master/dist/js/dropify.js"></script> 
 </head>
 <body>
     <label>csvテスト用ページ</label>
 
-{% block content %}
-<!--この上下の文を入れた部分のソースコードが自動で入る-->
-{% endblock %}
+    {% load static %}
+    {% block title %}csvアップロード{% endblock %}
+    {% block extrahead %}
+    <script>
+    $(function(){
+      $('.dropify').dropify();
+    })
+    </script>
+    {% endblock %}
+    
+    {% block content %}
+    <h3>成績をアップロードしてね</h3>
+    <form action="{% url 'proffesional:csv_test' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="file" class="dropify" data-default-file="ファイルを選択してください" name="csv">
+      <button type="submit" class="btn" name="button">アップロード</button>
+    </form>
+    
+    {% endblock content %}
 </body>
 </html>
