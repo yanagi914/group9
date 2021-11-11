@@ -29,8 +29,10 @@ def result(request):
 
 def csv_test(request):
     if 'csv' in request.FILES:
+        # csvを取り込む
         form_data = TextIOWrapper(request.FILES['csv'].file, encoding='ansi')
         csv_file = csv.reader(form_data)
+        # csvからモデルMy_Gradesにデータを追加
         for line in csv_file:
             my_grades, created =models.My_Grades.objects.get_or_create(subject_name=line[4])
             my_grades.subject_name = line[4]
