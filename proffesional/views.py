@@ -20,7 +20,7 @@ def result(request):
     }
     return render(request, template_file, option)
 
-def csv_test(request):
+def main(request):
     if 'csv' in request.FILES:
         # csvを取り込む
         form_data = TextIOWrapper(request.FILES['csv'].file, encoding='ansi')
@@ -33,12 +33,12 @@ def csv_test(request):
             my_grades.pass_or_fail = line[7]
             my_grades.save()
 
-        return render(request, 'proffesional/csv_test.html')
+        return render(request, 'proffesional/main.html')
 
     else:
-        return render(request, 'proffesional/csv_test.html')
+        return render(request, 'proffesional/main.html')
 
-    template_file = "proffesional/csv_test.html"
+    template_file = "proffesional/main.html"
 
     option = {
 
