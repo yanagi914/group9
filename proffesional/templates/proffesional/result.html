@@ -2,7 +2,20 @@
 
 {% block content %}
 <body class="result-background">
-    
+    <form>
+        {% csrf_token %}
+        </form>
+        <label>結果画面</label>
+       
+         <p></p>
+       
+         {% if credits_Course is not None %}
+         <li>コース科目 {{credits_Course}}</li>
+         <li>学部・学科共通科目 {{credits_System}}</li>
+         <li>一般教養科目 {{credits_General}}</li>
+         {% endif %}
+         
+         <a href="{% url 'proffesional:title' %}">戻る</a>    
 </body>
 
 
