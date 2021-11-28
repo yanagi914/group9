@@ -4,8 +4,8 @@
 <body>
 
    
-    <h3>成績をアップロードしてね</h3>
-    <form action="{% url 'proffesional:csv_test' %}" method="post" enctype="multipart/form-data">
+    <h3>コース科目登録用</h3>
+    <form action="{% url 'proffesional:develop_course' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <input type="file" class="dropify" data-default-file="生殺与奪の権をファイルに握らせろ！！" name="csv">
       <button type="submit" class="btn" name="button">アップロード</button>
