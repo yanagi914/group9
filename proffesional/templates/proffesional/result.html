@@ -10,9 +10,20 @@
          <p></p>
        
          {% if credits_Course is not None %}
-         <li>コース科目 {{credits_Course}}</li>
-         <li>学部・学科共通科目 {{credits_System}}</li>
-         <li>一般教養科目 {{credits_General}}</li>
+         <table border="1">
+         <tr>
+            <th>コース科目</th>
+            <th>{{credits_Course}}  /52.0</th>
+         </tr>
+         <tr>
+            <th>学部・学科共通科目</th>
+            <th>{{credits_System}}  /53.0</th>
+         </tr>
+         <tr>
+            <th>一般教養科目</th>
+            <th>{{credits_General}}  /24.0</th>
+         </tr>
+        </table>
          {% endif %}
          
          <a href="{% url 'proffesional:title' %}">戻る</a>    
