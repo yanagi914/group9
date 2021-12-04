@@ -2,13 +2,16 @@
     font-family: 'Myfont';
     src: url('../fonts/genkai-mincho.ttf');
 }
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP');
 
 .title-background {
-    animation: gimmick-bg-color 7.5s infinite;
+    /*animation: gimmick-bg-color 7.5s infinite;*/
+    background-color: #333;
+    text-align: center;
     
 }
 
-@keyframes gimmick-bg-color{
+/*@keyframes gimmick-bg-color{
     0% {
         background-color: #261c19;
     }
@@ -19,6 +22,10 @@
         background-color: #261c19;
     }
     
+    
+}*/
+html {
+    overflow-y:scroll;
 }
 
 
@@ -27,13 +34,46 @@
     font-size: 4em;
     font-family: 'Myfont';
     color: white;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width:800px;
-    margin: 0 auto;
+    margin-top: 100px;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(-50px);/*上から出す*/
+    transition: 1s;
 }
+
+header h1 {
+    
+    font-family: "Sawarabi Mincho";
+    color: white;
+    margin-top: 200px;
+    
+   
+}
+
+header h1 p.large{
+    font-size: 60px;
+    margin-bottom: 30px;
+     /*opacity: 0;
+    transform: translateY(-50px);/*上から出す*/
+    /*transition: 1s;*/
+}
+
+header h1 p.small{
+    font-size: 30px;
+    
+    color: white;
+    
+    /*opacity: 0;
+    transform: translateY(-50px);/*上から出す*/
+    /*transition: 1s;*/
+}
+
+.show{
+    /*opacity: 1;
+    transform: none;*/
+}
+
+
 
 .part {
     color:red;
@@ -42,42 +82,59 @@
 .container {
     text-align: center;
 }
-
+/*-----------------------button----------------------*/
 .button-7{
-    width:300px;
+    display:block;
     height:50px;
     justify-content: center;
-    border:2px solid #34495e;
-    float:left;
-    text-align:center;
+    margin-top: 60px;
+    /*margin: 0 auto;*/
+    /*border:2px solid #34495e;*/
+    /*float:left;*/
     cursor:pointer;
     position:relative;
     box-sizing:border-box;
     overflow:hidden;
-    margin:0 400px;
+    display:inline-block;
+    text-align:center; 
+    animation: zoomIn 0.8s 2s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+    opacity: 0;
+      
   }
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.3);
+        
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
   .button-7 a{
     font-family:Myfont;
     font-size:30px;
-    color:#34495e;
+    color:#B68F61;
     text-decoration:none;
     line-height:50px;
     transition:all .5s ease;
-    /*z-index:2;*/
+    z-index:2;
     position:relative;
+    
   }
   .eff-7{
-    width:300px;
+    /*width:300px;*/
     height:50px;
-    border:0px solid #34495e;
+    border:0px solid #B68F61;
     position:absolute;
     transition:all .5s ease;
-    /*z-index:1;*/
+    z-index:1;
     box-sizing:border-box;
     
   }
   .button-7:hover .eff-7{
-    border:50px solid #34495e;
+    border:60px solid #B68F61;
   }
   .button-7:hover a{
     color:#fff;

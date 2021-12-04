@@ -1,0 +1,107 @@
+/*文字だけ残るアニメーション*/
+/*-------------------animation------------------------*/
+@-webkit-keyframes passing-bar{
+    0% {
+        left: 0;
+        right: auto;
+        width: 0;
+    }
+    50% {
+        left: 0;
+        right: auto;
+        width: 0;
+    }
+    51% {
+        left: auto;
+        right: 0;
+        width: 100%;
+    }
+    100% {
+		left: auto;
+		right: 0;
+		width: 0;
+	}
+}
+
+@keyframes passing-bar{
+    0% {
+		left: 0;
+		width: 0;
+	}
+    50% {
+		left: 0;
+		width: 100%;
+	}
+    51% {
+		left: 0;
+		width: 100%;
+	}
+    100% {
+		left: 100%;
+		width: 0;
+	}
+}
+
+@-webkit-keyframes passing-txt{
+    0% { opacity: 0; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes passing-txt{
+    0% { opacity:0; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+/*----------------------------------------------------*/
+
+/*----------------------css--------------------------*/
+
+.passing .passing-box {
+	display: block;
+	text-align: center;
+}
+.passing .passing-bar {
+	position: relative;
+	display: inline-block;
+	/*　後ほど解説　*/
+	-webkit-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+.passing .passing-bar:before {
+	content: '';
+	display: inline-block;
+	width: 0;
+	height: 50%;
+	position: absolute;
+	left: 0;
+	top: 50%;
+	z-index: 1;
+	/* 任意の値 */
+	background: #fff;
+}
+.passing .passing-txt {
+	opacity: 0;
+	/* 後ほど解説 */
+	-webkit-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	/* 任意の値 */
+	font-size: 4.0rem;
+	font-weight: bold;
+	line-height: 1.5;
+}
+.passing.move .passing-bar:before {
+	-webkit-animation: passing-bar 2s ease 0s 1 normal forwards;
+	animation: passing-bar 2s ease 0s 1 normal forwards;
+}
+.passing.move .passing-txt {
+	
+	-webkit-animation: passing-txt 1.5s ease .5s 1 normal forwards;
+	animation:passing-txt 1.5s ease .5s 1 normal forwards;
+}
+
+/*-----------------------------------------------------------------------*/
+
