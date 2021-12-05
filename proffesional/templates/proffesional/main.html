@@ -1,23 +1,68 @@
 {% extends 'proffesional/base.html' %}
 
 {% block content %}
-<body>
 
-   
-    <h3>成績をアップロードしてね</h3>
+<body class="main-background">
+
+  <div class="container">
+    <div class="introduction">
+      <div class="word1">単位</div><br>
+      <div class="paragraph">それは我々学生が死に物狂いで勝ち取りにいくものです。<br>
+        しかし、例年この大学では、卒検着手以前で必要単位数に達していないために留年して死が確定してしまう学生が少なからずいるようです。<br>
+        中には単位が足りていると思っていたのに直前で足りないことが発覚し亡き者になった人も…<br>
+        皆さんには、これらの学生のように無残な死に方をして欲しくないため、このアプリを開発しました！！<br><br>
+      </div>
+    </div><br>
+    <div class="word2">使用方法</div>
+    <div class="table">
+
+      <div class="number">1.成績をダウンロード</div>
+      <p class="bullets">キャンパススクエアにあることの説明</p>
+
+      <div class="number">2.成績をアップロード</div>
+      <p class="bullets">先ほどダウンロードした成績を一番下のファイルアップロードへアップロードしてください。</p>
+
+      <div class="number">3.結果を見る</div>
+      <p class="bullets">ボタンを押し結果を確認してください。<br>
+        後は祈るだけです。</p>
+    </div>
+    <!--<ol class="table">
+      <li class="number">成績をダウンロード
+        <ul>
+          <li class="bullets">キャンパススクエアにあることの説明</li>
+        </ul>
+      </li>
+
+      <li class="number">成績をアップロード
+      
+      <ul>
+      <li class="bullets">先ほどダウンロードした成績を一番下のファイルアップロードへアップロードしてください。</li>
+      </ul>
+      
+      </li>
+
+      <li class="number">結果を見る
+        <ul>
+          <li class="bullets">ボタンを押し結果を確認してください。<br>
+              後は祈るだけです。</li>
+        </ul>
+      </li>
+      </ol>-->
     <form action="{% url 'proffesional:main' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <input type="file" class="dropify" data-default-file="生殺与奪の権をファイルに握らせろ！！！" name="csv">
-      <button type="submit" class="btn" name="button">アップロード</button>
+      <div class="right"><button type="submit" class="btn" name="button">結果を見る</button></div>
     </form>
-    
-    <script>
-    $(function(){
+
+  </div>
+
+  <script>
+    $(function () {
       $('.dropify').dropify();
     })
-    </script>
+  </script>
 
-    <a href="{% url 'proffesional:title' %}"> <br>戻る </a>
+
 
 </body>
 {% endblock %}
