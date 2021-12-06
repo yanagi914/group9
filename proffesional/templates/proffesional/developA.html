@@ -4,8 +4,8 @@
 <body>
 
    
-    <h3>学部・学科共通科目システム理化学科登録用</h3>
-    <form action="{% url 'proffesional:develop_system' %}" method="post" enctype="multipart/form-data">
+    <h3>コース科目A群登録用</h3>
+    <form action="{% url 'proffesional:develop_courseA' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <input type="file" class="dropify" data-default-file="生殺与奪の権をファイルに握らせろ！！" name="csv">
       <button type="submit" class="btn" name="button">アップロード</button>
