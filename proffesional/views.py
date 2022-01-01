@@ -22,17 +22,17 @@ def result(request):
 
 def main(request):
     error_message = []
-    mode = "SIRS"
     if 'csv' in request.FILES:
         # csvを取り込む
+        models.My_Grades.objects.all().delete()
         form_data = TextIOWrapper(request.FILES['csv'].file, encoding='ansi')
         csv_file = csv.reader(form_data)
 
         csv_list = [row for row in csv_file]
 
-        if csv_list[0][1] == "開講年度":
+        if csv_list[4][1] == "開講年度":
             mode = "SIRS"
-        elif csv_list[0][1] == "科目大区分":
+        elif csv_list[4][1] == "科目大区分":
             mode = "kakuteiseiseki"
         
         # csvからモデルMy_Gradesにデータを追加
@@ -58,86 +58,149 @@ def main(request):
                         my_grades.pass_or_fail = 0
                     my_grades.save()
 
-            if mode == "SIRS":
-                my_grades, created =models.My_Grades.objects.get_or_create(subject_name=line[4])
-                my_grades.subject_name = line[4]
-                my_grades.subject_code = line[3]
-                if line[7] == "合":
-                    my_grades.pass_or_fail = 1
-                else:
-                    my_grades.pass_or_fail = 0
-                my_grades.save()
-            elif mode == "kakuteiseiseki":
-                my_grades, created =models.My_Grades.objects.get_or_create(subject_name=line[4])
-                my_grades.subject_name = line[4]
-                if line[10] == "合":
-                    my_grades.pass_or_fail = 1
-                else:
-                    my_grades.pass_or_fail = 0
-                my_grades.save()
-        #自分の成績をリストに格納
-        My_Grade_list = models.My_Grades.objects.all()
-        #単位数データをリストに格納
-        Course_A_subject_list = models.Course_A_subject.objects.all()
-        Course_B_subject_list = models.Course_B_subject.objects.all()
-        Course_C_subject_list = models.Course_C_subject.objects.all()
-        System_common_list = models.System_common_subject.objects.all()
-        System_subject_list = models.System_subject.objects.all()
-        General_foreign_list = models.General_foreignlang_subject.objects.all()
-        General_local_list = models.General_local_subject.objects.all()
-        General_human_list = models.General_human_subject.objects.all()
+        if mode == "SIRS":
+            #自分の成績をリストに格納
+            My_Grade_list = models.My_Grades.objects.all()
+            #単位数データをリストに格納
+            Course_A_subject_list = models.Course_A_subject.objects.all()
+            Course_B_subject_list = models.Course_B_subject.objects.all()
+            Course_C_subject_list = models.Course_C_subject.objects.all()
+            System_common_list = models.System_common_subject.objects.all()
+            System_subject_list = models.System_subject.objects.all()
+            General_foreign_list = models.General_foreignlang_subject.objects.all()
+            General_local_list = models.General_local_subject.objects.all()
+            General_human_list = models.General_human_subject.objects.all()
 
-        #合計単位数
-        Course_A_Credits = 0
-        Course_B_Credits = 0
-        Course_C_Credits = 0
-        System_common_Credits = 0
-        System_Credits = 0
-        General_foreign_Credits = 0
-        General_local_Credits = 0
-        General_human_Credits = 0
+            #合計単位数
+            Course_A_Credits = 0
+            Course_B_Credits = 0
+            Course_C_Credits = 0
+            System_common_Credits = 0
+            System_Credits = 0
+            General_foreign_Credits = 0
+            General_local_Credits = 0
+            General_human_Credits = 0
 
-        for mygrade in My_Grade_list:
-            for courseAsubject in Course_A_subject_list:
-                if mygrade.subject_code == courseAsubject.subject_code:
-                    Course_A_Credits += mygrade.pass_or_fail * courseAsubject.credit
-            for courseBsubject in Course_B_subject_list:
-                if mygrade.subject_code == courseBsubject.subject_code:
-                    Course_B_Credits += mygrade.pass_or_fail * courseBsubject.credit
-            for courseCsubject in Course_C_subject_list:
-                if mygrade.subject_code == courseCsubject.subject_code:
-                    Course_C_Credits += mygrade.pass_or_fail * courseCsubject.credit
+            for mygrade in My_Grade_list:
+                for courseAsubject in Course_A_subject_list:
+                    if mygrade.subject_code == courseAsubject.subject_code:
+                        Course_A_Credits += mygrade.pass_or_fail * courseAsubject.credit
+                for courseBsubject in Course_B_subject_list:
+                    if mygrade.subject_code == courseBsubject.subject_code:
+                        Course_B_Credits += mygrade.pass_or_fail * courseBsubject.credit
+                for courseCsubject in Course_C_subject_list:
+                    if mygrade.subject_code == courseCsubject.subject_code:
+                        Course_C_Credits += mygrade.pass_or_fail * courseCsubject.credit
 
-            for systemcommonsubject in System_common_list:
-                if mygrade.subject_code == systemcommonsubject.subject_code:
-                    System_common_Credits += mygrade.pass_or_fail * systemcommonsubject.credit
-            for systemsubject in System_subject_list:
-                if mygrade.subject_code == systemsubject.subject_code:
-                    System_Credits += mygrade.pass_or_fail * systemsubject.credit
+                for systemcommonsubject in System_common_list:
+                    if mygrade.subject_code == systemcommonsubject.subject_code:
+                        System_common_Credits += mygrade.pass_or_fail * systemcommonsubject.credit
+                for systemsubject in System_subject_list:
+                    if mygrade.subject_code == systemsubject.subject_code:
+                        System_Credits += mygrade.pass_or_fail * systemsubject.credit
 
-            for general_foreign_subject in General_foreign_list:
-                if mygrade.subject_code == general_foreign_subject.subject_code:
-                    General_foreign_Credits += mygrade.pass_or_fail * general_foreign_subject.credit
-            for general_local_subject in General_local_list:
-                if mygrade.subject_code == general_local_subject.subject_code:
-                    General_local_Credits += mygrade.pass_or_fail * general_local_subject.credit
-            for general_human_subject in General_human_list:
-                if mygrade.subject_code == general_human_subject.subject_code:
-                    General_human_Credits += mygrade.pass_or_fail * general_human_subject.credit
+                for general_foreign_subject in General_foreign_list:
+                    if mygrade.subject_code == general_foreign_subject.subject_code:
+                        General_foreign_Credits += mygrade.pass_or_fail * general_foreign_subject.credit
+                for general_local_subject in General_local_list:
+                    if mygrade.subject_code == general_local_subject.subject_code:
+                        General_local_Credits += mygrade.pass_or_fail * general_local_subject.credit
+                for general_human_subject in General_human_list:
+                    if mygrade.subject_code == general_human_subject.subject_code:
+                        General_human_Credits += mygrade.pass_or_fail * general_human_subject.credit
 
-        General_Credits = General_foreign_Credits + General_local_Credits + General_human_Credits
+            General_Credits = General_foreign_Credits + General_local_Credits + General_human_Credits
 
-        option = {
-            'credits_CourseA':Course_A_Credits,
-            'credits_CourseB':Course_B_Credits,
-            'credits_CourseC':Course_C_Credits,
-            'credits_System':System_Credits,
-            'credits_System_common':System_common_Credits,
-            'credits_General':General_Credits,
-            'credits_General_foreign':General_foreign_Credits,
-            'credits_General_local':General_local_Credits,
-            'credits_General_human':General_human_Credits,
-        }
+            option = {
+                'credits_CourseA':Course_A_Credits,
+                'credits_CourseB':Course_B_Credits,
+                'credits_CourseC':Course_C_Credits,
+                'credits_System':System_Credits,
+                'credits_System_common':System_common_Credits,
+                'credits_General':General_Credits,
+                'credits_General_foreign':General_foreign_Credits,
+                'credits_General_local':General_local_Credits,
+                'credits_General_human':General_human_Credits,
+                'mode':mode,
+            }
+        elif mode == "kakuteiseiseki":
+            #自分の成績をリストに格納
+            My_Grade_list = models.My_Grades.objects.all()
+            #単位数データをリストに格納
+            Course_A_subject_list = models.Course_A_subject.objects.all()
+            Course_B_subject_list = models.Course_B_subject.objects.all()
+            Course_C_subject_list = models.Course_C_subject.objects.all()
+            System_common_list = models.System_common_subject.objects.all()
+            System_subject_list = models.System_subject.objects.all()
+            General_foreign_list = models.General_foreignlang_subject.objects.all()
+            General_local_list = models.General_local_subject.objects.all()
+            General_human_list = models.General_human_subject.objects.all()
+
+            #合計単位数
+            Course_A_Credits = 0
+            Course_B_Credits = 0
+            Course_C_Credits = 0
+            System_common_Credits = 0
+            System_Credits = 0
+            General_foreign_Credits = 0
+            General_local_Credits = 0
+            General_human_Credits = 0
+            tmp_list = []
+
+            for mygrade in My_Grade_list:
+                for courseAsubject in Course_A_subject_list:
+                    if (courseAsubject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False:
+                        Course_A_Credits += mygrade.pass_or_fail * courseAsubject.credit
+                        mygrade.isCheckedFlag = True
+                for courseBsubject in Course_B_subject_list:
+                    if (courseBsubject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False:
+                        Course_B_Credits += mygrade.pass_or_fail * courseBsubject.credit
+                        mygrade.isCheckedFlag = True
+                for courseCsubject in Course_C_subject_list:
+                    if (courseCsubject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False:
+                        Course_C_Credits += mygrade.pass_or_fail * courseCsubject.credit
+                        mygrade.isCheckedFlag = True
+
+                for systemcommonsubject in System_common_list:
+                    if (systemcommonsubject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False:
+                        System_common_Credits += mygrade.pass_or_fail * systemcommonsubject.credit
+                        #tmp_list.append([mygrade.subject_name,systemcommonsubject.subject_name])
+                        mygrade.isCheckedFlag = True
+                for systemsubject in System_subject_list:
+                    if (systemsubject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False:
+                        System_Credits += mygrade.pass_or_fail * systemsubject.credit
+                        mygrade.isCheckedFlag = True
+
+                for general_foreign_subject in General_foreign_list:
+                    if (general_foreign_subject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False:
+                        General_foreign_Credits += mygrade.pass_or_fail * general_foreign_subject.credit
+                        mygrade.isCheckedFlag = True
+                for general_local_subject in General_local_list:
+                    if (general_local_subject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False:
+                        General_local_Credits += mygrade.pass_or_fail * general_local_subject.credit
+                        mygrade.isCheckedFlag = True
+                for general_human_subject in General_human_list:
+                    if (general_human_subject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False:
+                        General_human_Credits += mygrade.pass_or_fail * general_human_subject.credit
+                        mygrade.isCheckedFlag = True
+
+            General_Credits = General_foreign_Credits + General_local_Credits + General_human_Credits
+
+            option = {
+                'credits_CourseA':Course_A_Credits,
+                'credits_CourseB':Course_B_Credits,
+                'credits_CourseC':Course_C_Credits,
+                'credits_System':System_Credits,
+                'credits_System_common':System_common_Credits,
+                'credits_General':General_Credits,
+                'credits_General_foreign':General_foreign_Credits,
+                'credits_General_local':General_local_Credits,
+                'credits_General_human':General_human_Credits,
+                'mode':mode,
+                'tmp_list':tmp_list,
+            }
+
+
 
         return render(request, 'proffesional/result.html',option)
 
@@ -156,6 +219,10 @@ def main(request):
 
     }
     return render(request, template_file, option)
+
+
+
+
 
 
 
