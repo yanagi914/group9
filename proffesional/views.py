@@ -34,6 +34,8 @@ def main(request):
             mode = "SIRS"
         elif csv_list[4][1] == "科目大区分":
             mode = "kakuteiseiseki"
+        else:
+            error_message.append("csvの形式が正しくありません")
         
         # csvからモデルMy_Gradesにデータを追加
         for index,line in enumerate(csv_list):
@@ -122,6 +124,7 @@ def main(request):
                 'credits_General_local':General_local_Credits,
                 'credits_General_human':General_human_Credits,
                 'mode':mode,
+                'error_message':error_message,
             }
         elif mode == "kakuteiseiseki":
             #自分の成績をリストに格納
@@ -164,7 +167,6 @@ def main(request):
                 for systemcommonsubject in System_common_list:
                     if (systemcommonsubject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False:
                         System_common_Credits += mygrade.pass_or_fail * systemcommonsubject.credit
-                        #tmp_list.append([mygrade.subject_name,systemcommonsubject.subject_name])
                         mygrade.isCheckedFlag = True
                 for systemsubject in System_subject_list:
                     if (systemsubject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False:
@@ -198,6 +200,7 @@ def main(request):
                 'credits_General_human':General_human_Credits,
                 'mode':mode,
                 'tmp_list':tmp_list,
+                'error_message':error_message,
             }
 
 
