@@ -21,21 +21,60 @@ def result(request):
     return render(request, template_file, option)
 
 def main(request):
+    error_message = []
+    mode = "SIRS"
     if 'csv' in request.FILES:
         # csvを取り込む
         form_data = TextIOWrapper(request.FILES['csv'].file, encoding='ansi')
         csv_file = csv.reader(form_data)
-        # csvからモデルMy_Gradesにデータを追加
-        for line in csv_file:
-            my_grades, created =models.My_Grades.objects.get_or_create(subject_name=line[4])
-            my_grades.subject_name = line[4]
-            my_grades.subject_code = line[3]
-            if line[7] == "合":
-                my_grades.pass_or_fail = 1
-            else:
-                my_grades.pass_or_fail = 0
-            my_grades.save()
 
+        csv_list = [row for row in csv_file]
+
+        if csv_list[0][1] == "開講年度":
+            mode = "SIRS"
+        elif csv_list[0][1] == "科目大区分":
+            mode = "kakuteiseiseki"
+        
+        # csvからモデルMy_Gradesにデータを追加
+        for index,line in enumerate(csv_list):
+            if index < 4:
+                continue
+            else:
+                if mode == "SIRS":
+                    my_grades, created =models.My_Grades.objects.get_or_create(subject_name=line[4])
+                    my_grades.subject_name = line[4]
+                    my_grades.subject_code = line[3]
+                    if line[7] == "合":
+                        my_grades.pass_or_fail = 1
+                    else:
+                        my_grades.pass_or_fail = 0
+                    my_grades.save()
+                elif mode == "kakuteiseiseki":
+                    my_grades, created =models.My_Grades.objects.get_or_create(subject_name=line[4])
+                    my_grades.subject_name = line[4]
+                    if line[10] == "合":
+                        my_grades.pass_or_fail = 1
+                    else:
+                        my_grades.pass_or_fail = 0
+                    my_grades.save()
+
+            if mode == "SIRS":
+                my_grades, created =models.My_Grades.objects.get_or_create(subject_name=line[4])
+                my_grades.subject_name = line[4]
+                my_grades.subject_code = line[3]
+                if line[7] == "合":
+                    my_grades.pass_or_fail = 1
+                else:
+                    my_grades.pass_or_fail = 0
+                my_grades.save()
+            elif mode == "kakuteiseiseki":
+                my_grades, created =models.My_Grades.objects.get_or_create(subject_name=line[4])
+                my_grades.subject_name = line[4]
+                if line[10] == "合":
+                    my_grades.pass_or_fail = 1
+                else:
+                    my_grades.pass_or_fail = 0
+                my_grades.save()
         #自分の成績をリストに格納
         My_Grade_list = models.My_Grades.objects.all()
         #単位数データをリストに格納
@@ -103,7 +142,13 @@ def main(request):
         return render(request, 'proffesional/result.html',option)
 
     else:
-        return render(request, 'proffesional/main.html')
+        error_message.append("csvがアップロードされていません")
+
+        option = {
+            'error_message':error_message
+        }
+
+        return render(request, 'proffesional/main.html',option)
 
     template_file = "proffesional/main.html"
 
