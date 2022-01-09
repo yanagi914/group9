@@ -23,24 +23,30 @@ def result(request):
 def main(request):
     error_message = []
     if 'csv' in request.FILES:
+
         # csvを取り込む
-        models.My_Grades.objects.all().delete()
+        models.My_Grades.objects.all().delete() #My_Gradesをまず初期化
         form_data = TextIOWrapper(request.FILES['csv'].file, encoding='ansi')
         csv_file = csv.reader(form_data)
 
         csv_list = [row for row in csv_file]
 
-        if csv_list[4][1] == "開講年度":
+        #CSVの形式を判定
+        if csv_list[4][1] == "開講年度": #SIRS~(学外からダウンロードしたやつ？)
             mode = "SIRS"
-        elif csv_list[4][1] == "科目大区分":
+        elif csv_list[4][1] == "科目大区分": #KakuteiseisekiCsv(airmitからダウンロードしたやつ？)
             mode = "kakuteiseiseki"
         else:
             error_message.append("csvの形式が正しくありません")
         
         # csvからモデルMy_Gradesにデータを追加
         for index,line in enumerate(csv_list):
+
+            #最初の氏名とかラベルとかをスキップ
             if index < 4:
                 continue
+
+            #csv -> My_Gradesにデータを読み込み
             else:
                 if mode == "SIRS":
                     my_grades, created =models.My_Grades.objects.get_or_create(subject_name=line[4])
@@ -83,6 +89,7 @@ def main(request):
             General_local_Credits = 0
             General_human_Credits = 0
 
+            #照合処理・単位計算
             for mygrade in My_Grade_list:
                 for courseAsubject in Course_A_subject_list:
                     if mygrade.subject_code == courseAsubject.subject_code:
@@ -150,9 +157,10 @@ def main(request):
             General_human_Credits = 0
             tmp_list = []
 
+            #照合処理・単位計算
             for mygrade in My_Grade_list:
                 for courseAsubject in Course_A_subject_list:
-                    if (courseAsubject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False:
+                    if (courseAsubject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False: #srartswithは先頭一致を調べる関数
                         Course_A_Credits += mygrade.pass_or_fail * courseAsubject.credit
                         mygrade.isCheckedFlag = True
                 for courseBsubject in Course_B_subject_list:
