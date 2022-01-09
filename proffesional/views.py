@@ -22,6 +22,12 @@ def result(request):
 
 def main(request):
     error_message = []
+
+    if 'choice_output' in request.POST:
+        output = request.POST.get('choice_output', None)
+    else:
+        output = ""
+
     if 'csv' in request.FILES:
 
         # csvを取り込む
@@ -132,6 +138,7 @@ def main(request):
                 'credits_General_human':General_human_Credits,
                 'mode':mode,
                 'error_message':error_message,
+                'output':output
             }
         elif mode == "kakuteiseiseki":
             #自分の成績をリストに格納
@@ -209,9 +216,44 @@ def main(request):
                 'mode':mode,
                 'tmp_list':tmp_list,
                 'error_message':error_message,
+                'output':output
             }
 
 
+        if output == "1": #卒業要件
+            temp_dict = {
+
+                'Course_A':19.0,
+                'Course_B':8.0,
+                'Course_C':25.0,
+                'System_common':26.0,
+                'System':27.0,
+                'General':24.0,
+                'General_foreign':9.0,
+                'General_local':2.0,
+                'General_human':13.0
+            }
+
+            option.update(temp_dict)
+
+        elif output == "0": #卒業研究着手要件
+            temp_dict = {
+
+                'Course_A':11.0,
+                'Course_B':4.0,
+                'Course_C':15.0,
+                'System_common':23.0,
+                'System':25.0,
+                'General':16.0,
+                'General_foreign':7.0,
+                'General_local':1.0,
+                'General_human':8.0
+            }
+
+            option.update(temp_dict)
+        
+        else:
+            error_message.append("どちらを判定するか選択してください")
 
         return render(request, 'proffesional/result.html',option)
 
