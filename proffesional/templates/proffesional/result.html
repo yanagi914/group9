@@ -8,49 +8,57 @@
         <label>結果画面</label>
        
          <p></p>
-       
-         {% if credits_CourseA is not None %}
+
+         {% if error_message is not None %}
+         <ul>
+         {% for message in error_message %}
+         <li style="color:red">{{message}}</li>
+         {% endfor %}
+         </ul>
+         {% endif %}
+
+         {% if Course_A is not None %}
          <table border="1">
          <tr>
             <th>コース科目 A群</th>
-            <th>{{credits_CourseA}}  /19.0</th>
+            <th>{{credits_CourseA}}  /{{Course_A}}</th>
          </tr>
          <tr>
             <th>コース科目 B群</th>
-            <th>{{credits_CourseB}}  /8.0</th>
+            <th>{{credits_CourseB}}  /{{Course_B}}</th>
          </tr>
          <tr>
             <th>コース科目 C群</th>
-            <th>{{credits_CourseC}}  /25.0</th>
+            <th>{{credits_CourseC}}  /{{Course_C}}</th>
          </tr>
          <tr>
             <th>学部・学科共通科目 理工学部共通科目</th>
-            <th>{{credits_System_common}}  /26.0</th>
+            <th>{{credits_System_common}}  /{{System_common}}</th>
          </tr>
          <tr>
             <th>学部・学科共通科目 システム理化学科共通科目</th>
-            <th>{{credits_System}}  /27.0</th>
+            <th>{{credits_System}}  /{{System}}</th>
          </tr>
          <tr>
             <th>一般教養科目</th>
-            <th>{{credits_General}}  /24.0</th>
+            <th>{{credits_General}}  /{{General}}</th>
          </tr>
          <tr>
             <th>一般教養科目 外国語科目</th>
-            <th>{{credits_General_foreign}}  /9.0</th>
+            <th>{{credits_General_foreign}}  /{{General_foreign}}</th>
          </tr>
          <tr>
             <th>一般教養科目 地域連携科目</th>
-            <th>{{credits_General_local}}  /2.0</th>
+            <th>{{credits_General_local}}  /{{General_local}}</th>
          </tr>
          <tr>
             <th>一般教養科目 人と社会に関する科目</th>
-            <th>{{credits_General_human}}  /12.0</th>
+            <th>{{credits_General_human}}  /{{General_human}}</th>
          </tr>
         </table>
          {% endif %}
          {{mode}}
-         <a href="{% url 'proffesional:title' %}">戻る</a>    
+         <a href="{% url 'proffesional:main' %}">戻る</a>    
 </body>
 
 
