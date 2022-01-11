@@ -22,6 +22,7 @@ def result(request):
 
 def main(request):
     error_message = []
+    disappointing = False
 
     if 'choice_output' in request.POST:
         output = request.POST.get('choice_output', None)
@@ -126,6 +127,19 @@ def main(request):
 
             General_Credits = General_foreign_Credits + General_local_Credits + General_human_Credits
 
+            my_credits = [
+                Course_A_Credits,
+                Course_B_Credits,
+                Course_C_Credits,
+                System_common_Credits,
+                System_Credits,
+                General_Credits,
+                General_foreign_Credits,
+                General_local_Credits,
+                General_human_Credits
+                
+            ]
+
             option = {
                 'credits_CourseA':Course_A_Credits,
                 'credits_CourseB':Course_B_Credits,
@@ -138,7 +152,8 @@ def main(request):
                 'credits_General_human':General_human_Credits,
                 'mode':mode,
                 'error_message':error_message,
-                'output':output
+                'output':output,
+                'disappointing':disappointing
             }
         elif mode == "kakuteiseiseki":
             #自分の成績をリストに格納
@@ -203,6 +218,19 @@ def main(request):
 
             General_Credits = General_foreign_Credits + General_local_Credits + General_human_Credits
 
+            my_credits = [
+                Course_A_Credits,
+                Course_B_Credits,
+                Course_C_Credits,
+                System_common_Credits,
+                System_Credits,
+                General_Credits,
+                General_foreign_Credits,
+                General_local_Credits,
+                General_human_Credits
+                
+            ]
+
             option = {
                 'credits_CourseA':Course_A_Credits,
                 'credits_CourseB':Course_B_Credits,
@@ -216,7 +244,8 @@ def main(request):
                 'mode':mode,
                 'tmp_list':tmp_list,
                 'error_message':error_message,
-                'output':output
+                'output':output,
+                'disappointing':disappointing
             }
 
 
@@ -236,6 +265,24 @@ def main(request):
 
             option.update(temp_dict)
 
+            temp_list = [
+                19.0,
+                8.0,
+                25.0,
+                26.0,
+                27.0,
+                24.0,
+                9.0,
+                2.0,
+                13.0 
+            ]
+
+            for i,temp in enumerate(temp_list):
+                for j,credits in enumerate(my_credits):
+                    if (i==j) & ((temp-credits)>0):
+                        option['disappointing'] = True
+
+
         elif output == "0": #卒業研究着手要件
             temp_dict = {
 
@@ -251,6 +298,23 @@ def main(request):
             }
 
             option.update(temp_dict)
+
+            temp_list = [
+                11.0,
+                4.0,
+                15.0,
+                23.0,
+                25.0,
+                16.0,
+                7.0,
+                1.0,
+                8.0 
+            ]
+
+            for i,temp in enumerate(temp_list):
+                for j,credits in enumerate(my_credits):
+                    if (i==j) & ((temp-credits)>0):
+                        option['disappointing'] = True
         
         else:
             error_message.append("どちらを判定するか選択してください")
