@@ -2,10 +2,30 @@
 
 {% block content %}
 <body class="result-background">
-    <form>
+    <div class="container">
+        <form>
+            {% csrf_token %}
+        </form>
+
+        <div class="result-word">結果画面</div>
+        {% if error_message is not None %}
+         <ul>
+         {% for message in error_message %}
+         <li style="color:red">{{message}}</li>
+         {% endfor %}
+         </ul>
+         {% endif %}
+
+         {% if Course_A is not None %}
+         <table border="1">
+        
+        
+
+    </div>
+    <!-- <form>
         {% csrf_token %}
         </form>
-        <label>結果画面</label>
+        <div class="result-word">結果画面</div>
        
          <p></p>
 
@@ -58,7 +78,7 @@
         </table>
          {% endif %}
          {{mode}}
-         <a href="{% url 'proffesional:main' %}">戻る</a>    
+         <a href="{% url 'proffesional:main' %}">戻る</a>     -->
 </body>
 
 
