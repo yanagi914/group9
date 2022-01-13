@@ -61,6 +61,22 @@
          {{Course_A_subject_list2}}
          {{Course_B_subject_list2}}
          {{Course_C_subject_list2}}
+
+         <table border="1">
+         {% for courseAsubject in Course_A_subject_list2 %}
+            {%if forloop.first%}
+            <tr>
+               <th>コース科目 A群</th>
+               <th>{{ courseAsubject }}</th>
+            </tr>
+            {%else%}
+            <tr>
+               <th></th>
+               <th>{{ courseAsubject }}</th>
+            </tr>
+            {%endif%}
+         {% endfor %}
+         </table>
          <a href="{% url 'proffesional:main' %}">戻る</a>    
 </body>
 
