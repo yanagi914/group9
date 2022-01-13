@@ -3,6 +3,7 @@
 .main-background {
     padding-bottom: 50px;
     font-family: 'Myfont';
+    background-color: #333333;
 }
 
 .container {
@@ -19,6 +20,8 @@
     opacity: 0;
     transform: translateY(50px);
     transition: 1s;
+    font-family: sans-serif;
+    color: #fff;
 }
 
 .paragraph.fade-in{
@@ -37,6 +40,7 @@
     font-size: 24px;
     opacity: 0;
     transition: 1s;
+    color: #fff;
 }
 .word2.fade-in {
     opacity: 1;
@@ -51,6 +55,7 @@
     border-radius: 10px;
     opacity: 0;
     transition: 1s;
+    color: #fff;
 }
 .table.fade-in {
     opacity: 1;

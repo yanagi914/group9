@@ -23,7 +23,7 @@ def result(request):
 def main(request):
     if 'csv' in request.FILES:
         # csvを取り込む
-        form_data = TextIOWrapper(request.FILES['csv'].file, encoding='ansi')
+        form_data = TextIOWrapper(request.FILES['csv'].file, encoding='cp932')
         csv_file = csv.reader(form_data)
         # csvからモデルMy_Gradesにデータを追加
         for line in csv_file:
@@ -80,7 +80,7 @@ def main(request):
 def develop_course(request):
     if 'csv' in request.FILES:
         # csvを取り込む
-        form_data = TextIOWrapper(request.FILES['csv'].file, encoding='ansi')
+        form_data = TextIOWrapper(request.FILES['csv'].file, encoding='cp932')
         csv_file = csv.reader(form_data)
         # csvからモデルCourse_subjectにデータを追加
         for line in csv_file:
@@ -105,7 +105,7 @@ def develop_course(request):
 def develop_system(request):
     if 'csv' in request.FILES:
         # csvを取り込む
-        form_data = TextIOWrapper(request.FILES['csv'].file, encoding='ansi')
+        form_data = TextIOWrapper(request.FILES['csv'].file, encoding='cp932')
         csv_file = csv.reader(form_data)
         # csvからモデルSystem_subjectにデータを追加
         for line in csv_file:
@@ -130,7 +130,7 @@ def develop_system(request):
 def develop_general(request):
     if 'csv' in request.FILES:
         # csvを取り込む
-        form_data = TextIOWrapper(request.FILES['csv'].file, encoding='ansi')
+        form_data = TextIOWrapper(request.FILES['csv'].file, encoding='cp932')
         csv_file = csv.reader(form_data)
         # csvからモデルGeneral_subjectにデータを追加
         for line in csv_file:

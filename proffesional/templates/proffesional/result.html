@@ -2,7 +2,36 @@
 
 {% block content %}
 <body class="result-background">
+    <div class="container">
+        <div class="result-word">結果発表！！</div>
     <form>
+        {% csrf_token %}
+    </form>
+
+    <table>
+        
+        <tbody>
+            {% if credits_Course is not None %}
+            <tr>
+                <th>コース科目</th>
+                <td data-label="単位数" class="txt">{{credits_Course}}</td>
+                
+            </tr>
+            <tr>
+                <th>学部・学科共通科目</th>
+                <td data-label="単位数" class="txt">{{credits_System}}</td>
+                
+            </tr>
+            <tr>
+                <th>一般教養科目</th>
+                <td data-label="単位数" class="txt">{{credits_General}}</td>
+                
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+    <!-- <form>
         {% csrf_token %}
         </form>
         <label>結果画面</label>
@@ -15,8 +44,9 @@
          <li>一般教養科目 {{credits_General}}</li>
          {% endif %}
          
-         <a href="{% url 'proffesional:title' %}">戻る</a>    
+         <a href="{% url 'proffesional:title' %}">戻る</a>     -->
 </body>
+
 
 
 {% endblock %}
