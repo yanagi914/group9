@@ -1,0 +1,18 @@
+{% extends 'proffesional/base.html' %}
+
+{% block content %}
+<body>
+    <h3>科目情報登録用</h3>
+
+    <a href="{% url 'proffesional:develop_general_foreignlang' %}"> <br>外国語科目 </a>
+    <a href="{% url 'proffesional:develop_general_human' %}"> <br>人と社会に関する科目 </a>
+    <a href="{% url 'proffesional:develop_general_local' %}"> <br>地域連携科目 </a>
+    <a href="{% url 'proffesional:develop_system_common' %}"> <br>理工学部 </a>
+    <a href="{% url 'proffesional:develop_system' %}"> <br>システム理化学科 </a>
+    <a href="{% url 'proffesional:develop_courseA' %}"> <br>コース科目A群 </a>
+    <a href="{% url 'proffesional:develop_courseB' %}"> <br>コース科目B群 </a>
+    <a href="{% url 'proffesional:develop_courseC' %}"> <br>コース科目C群 </a>
+    <a href="{% url 'proffesional:title' %}"> <br>戻る </a>    
+
+</body>
+{% endblock %}

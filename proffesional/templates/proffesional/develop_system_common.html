@@ -11,6 +11,13 @@
       <button type="submit" class="btn" name="button">アップロード</button>
     </form>
     
+    <h3>学部・学科共通科目理工学部登録用 サブ</h3>
+    <form action="{% url 'proffesional:develop_system_common_sub' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="file" class="dropify" data-default-file="生殺与奪の権をファイルに握らせろ！！" name="csv">
+      <button type="submit" class="btn" name="button">アップロード</button>
+    </form>
+
     <script>
     $(function(){
       $('.dropify').dropify();

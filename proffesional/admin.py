@@ -8,6 +8,11 @@ from proffesional.models import System_common_subject
 from proffesional.models import General_foreignlang_subject
 from proffesional.models import General_local_subject
 from proffesional.models import General_human_subject
+from proffesional.models import System_subject_sub
+from proffesional.models import System_common_subject_sub
+from proffesional.models import General_foreignlang_subject_sub
+from proffesional.models import General_local_subject_sub
+from proffesional.models import General_human_subject_sub
 
 # Register your models here.
 admin.site.register(My_Grades)
@@ -19,3 +24,8 @@ admin.site.register(System_common_subject)
 admin.site.register(General_foreignlang_subject)
 admin.site.register(General_local_subject)
 admin.site.register(General_human_subject)
+admin.site.register(System_subject_sub)
+admin.site.register(System_common_subject_sub)
+admin.site.register(General_foreignlang_subject_sub)
+admin.site.register(General_local_subject_sub)
+admin.site.register(General_human_subject_sub)
