@@ -1,7 +1,17 @@
 /*-------------------result画面------------------------*/
-body .result-background {
+ .result-background {
     font-family: "Open Sans", sans-serif;
     line-height: 1.25;
+    background-color: #333;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+    
+  
+  .container2 {
+    max-width: 70%;
+    margin: 0 auto;
+    margin-bottom: 70px;
     
   }
   
@@ -15,8 +25,8 @@ body .result-background {
   
   table tr {
     background-color: #f5e6e6;
-    padding: .35em;
-    border-bottom: 2px solid #fff;
+    padding: .35em .35em .15em .35em;
+    /*border-bottom: 2px solid #fff;*/
   }
   table th,
   table td {
@@ -68,7 +78,8 @@ body .result-background {
     }
     table tr {
       display: block;
-      margin-bottom: .625em;
+     
+      /*margin-bottom: .0.625em;*/
     }
     table td {
       border-bottom: 1px solid #bbb;
@@ -97,9 +108,10 @@ body .result-background {
        font-weight: bold;
        font-size: 40px;
        margin-bottom: 30px;
+       font-family: 'Myfont';
    }
   
-   .result-word {
+   /* .result-word {
     animation: poyoyon 0.7s cubic-bezier(0.12, 0, 0.39, 0) 1 forwards;
   }
    
@@ -120,4 +132,137 @@ body .result-background {
     20%,100% {
       opacity: 1;
     }
+  } */
+
+  .text {
+    margin: 50px 0 0;
+    text-align: center;
+    font-size: 50px;
+    opacity: 0;
+    color: #fff;
   }
+
+  .text p {
+    display: inline-block;
+    transform-origin: center center;
+    transform: translate3d(0, 40px, 0);
+  }
+
+  .text p span {
+    transform-origin: center center;
+    transform: scale3d(0.1, 0.1, 1);
+    opacity: 0;
+  }
+
+  .text p:nth-child(1) {
+    transition: transform 1.5s ease 0.1s;
+  }
+  .text p:nth-child(1) span {
+    transition: transform 1.5s ease 0.1s,opacity 1.5s ease 0.1s;
+  }
+  .text p:nth-child(2) {
+    transition: transform 1.5s ease 0.2s;
+  }
+  .text p:nth-child(2) span {
+    transition: transform 1.5s ease 0.2s,opacity 1.5s ease 0.2s;
+  }
+  .text p:nth-child(3) {
+    transition: transform 1.5s ease 0.3s;
+  }
+  .text p:nth-child(3) span {
+    transition: transform 1.5s ease 0.3s,opacity 1.5s ease 0.3s;
+  }
+  .text p:nth-child(4) {
+    transition: transform 1.5s ease 0.4s;
+  }
+  .text p:nth-child(4) span {
+    transition: transform 1.5s ease 0.4s,opacity 1.5s ease 0.4s;
+  }
+  .text p:nth-child(5) {
+    transition: transform 1.5s ease 0.5s;
+  }
+  .text p:nth-child(5) span {
+    transition: transform 1.5s ease 0.5s,opacity 1.5s ease 0.5s;
+  }
+  .text p:nth-child(6) {
+    transition: transform 1.5s ease 0.6s;
+  }
+  .text p:nth-child(6) span {
+    transition: transform 1.5s ease 0.6s,opacity 1.5s ease 0.6s;
+  }
+
+  .text.active {
+    opacity: 1;
+  }
+  
+  .text.active p {
+    transform: translate3d(0, 0, 0);
+  }
+  
+  .text.active span {
+    display: block;
+    transform: scale3d(1, 1, 1);
+    opacity: 1;
+  }
+
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+  
+
+ /*---------------------チェックボックス-------------------------------*/ 
+ 
+
+ .name {
+    /*background: #fff;*/
+    /*padding: 20px;*/
+    position: relative;
+    margin: 0 0 1px 0;
+  }
+  .name:hover {
+    cursor: pointer;
+  }
+  /*.name.selected {
+    background: #f3f3f3;
+  }*/
+  
+  label {
+    cursor: pointer;
+  }
+  label:before {
+    display: inline-block;
+    content: "+";
+    margin: 0 10px 0 0;
+    width: 35px;
+    height: 35px;
+    border: 3px solid #fff;
+    /*border: 3px solid #f95e5e;*/
+    border-radius: 100%;
+    vertical-align: middle;
+    color: #fff;
+    /*color: #f95e5e;*/
+    font-size: 30px;
+    text-align: center;
+    font-weight: 700;
+    line-height: 0.9em;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  input[type=checkbox]:checked + label:before {
+    background: #f95e5e;
+    color: #fff;
+    transform: rotate(135deg);
+    transform-origin: center center;
+  }
+  
+  input[type=checkbox] {
+    visibility: hidden;
+  }
+
+  .is-open1,.is-open2,.is-open3,
+  .is-open4,.is-open5,.is-open6,
+  .is-open7,.is-open8,.is-open9 {
+    width: 1000px;
+    display: none;
+  }
+

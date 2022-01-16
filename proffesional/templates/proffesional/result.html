@@ -1,84 +1,160 @@
 {% extends 'proffesional/base.html' %}
 
 {% block content %}
+
 <body class="result-background">
-    <div class="container">
-        <form>
-            {% csrf_token %}
-        </form>
+   <div class="container2">
+      <form>
+         {% csrf_token %}
+      </form>
 
-        <div class="result-word">結果画面</div>
-        {% if error_message is not None %}
-         <ul>
+      <div class="result-word">
+         <div class="text">結果発表！！</div>
+      </div>
+      {% if error_message is not None %}
+      <ul>
          {% for message in error_message %}
          <li style="color:red">{{message}}</li>
          {% endfor %}
-         </ul>
-         {% endif %}
+      </ul>
+      {% endif %}
 
-         {% if Course_A is not None %}
-         <table border="1">
+      {% if Course_A is not None %}
+      <table border="1">
+         <tbody>
+            <tr>
+               <th class="name">
+                  <input type="checkbox" name="checkbox1" id="checkbox01" />
+                  <label for="checkbox01" class="check1">コース科目 A群</label>
+               </th>
+               <th class="is-open1">
+                  {{credits_CourseA}} /{{Course_A}}
+               </th>
+            </tr>
+            <tr>
+               <th class="name">
+                  <input type="checkbox" name="checkbox2" id="checkbox02" />
+                  <label for="checkbox02" class="check2">コース科目 B群</label>
+               </th>
+               <th class="is-open2">
+                  {{credits_CourseB}}  /{{Course_B}}
+               </th>
+            </tr>
+            <tr>
+               <th class="name">
+                  <input type="checkbox" name="checkbox3" id="checkbox03" />
+                  <label for="checkbox03" class="check3">コース科目 C群</label>
+               </th>
+               <th class="is-open3">
+                  {{credits_CourseC}} /{{Course_C}}
+               </th>
+            </tr>
+            <tr>
+               <th class="name">
+                  <input type="checkbox" name="checkbox4" id="checkbox04" />
+                  <label for="checkbox04" class="check4">学部・学科共通科目 理工学部共通科目</label>
+               </th>
+               <th class="is-open4">
+                  {{credits_System_common}}  /{{System_common}}
+               </th>
+            </tr>
+            <tr>
+               <th class="name">
+                  <input type="checkbox" name="checkbox5" id="checkbox05" />
+                  <label for="checkbox05" class="check5">学部・学科共通科目 システム理化学科共通科目</label>
+               </th>
+               <th class="is-open5">
+                  {{credits_System}}  /{{System}}
+               </th>
+            </tr>
+            <tr>
+               <th class="name">
+                  <input type="checkbox" name="checkbox6" id="checkbox06" />
+                  <label for="checkbox06" class="check6">一般教養科目</label>
+               </th>
+               <th class="is-open6">
+                  {{credits_General}}  /{{General}}
+               </th>
+            </tr>
+            <tr>
+               <th class="name">
+                  <input type="checkbox" name="checkbox7" id="checkbox07" />
+                  <label for="checkbox07" class="check7">一般教養科目 外国語科目</label>
+               </th>
+               <th class="is-open7">
+                  {{credits_General_foreign}}  /{{General_foreign}}
+               </th>
+            </tr>
+            <tr>
+               <th class="name">
+                  <input type="checkbox" name="checkbox8" id="checkbox08" />
+                  <label for="checkbox08" class="check8">一般教養科目 地域連携科目</label>
+               </th>
+               <th class="is-open8">
+                  {{credits_General_local}}  /{{General_local}}
+               </th>
+            </tr>
+            <tr>
+               <th class="name">
+                  <input type="checkbox" name="checkbox9" id="checkbox09" />
+                  <label for="checkbox09" class="check9">一般教養科目 人と社会に関する科目</label>
+               </th>
+               <th class="is-open9">
+                  {{credits_General_human}}  /{{General_human}}
+               </th>
+            </tr>
+
+         </tbody>
+      </table>
+      <!-- <table border="1">
+            
         
-        
-
-    </div>
-    <!-- <form>
-        {% csrf_token %}
-        </form>
-        <div class="result-word">結果画面</div>
-       
-         <p></p>
-
-         {% if error_message is not None %}
-         <ul>
-         {% for message in error_message %}
-         <li style="color:red">{{message}}</li>
-         {% endfor %}
-         </ul>
-         {% endif %}
-
-         {% if Course_A is not None %}
-         <table border="1">
-         <tr>
-            <th>コース科目 A群</th>
-            <th>{{credits_CourseA}}  /{{Course_A}}</th>
-         </tr>
-         <tr>
-            <th>コース科目 B群</th>
-            <th>{{credits_CourseB}}  /{{Course_B}}</th>
-         </tr>
-         <tr>
-            <th>コース科目 C群</th>
-            <th>{{credits_CourseC}}  /{{Course_C}}</th>
-         </tr>
-         <tr>
-            <th>学部・学科共通科目 理工学部共通科目</th>
-            <th>{{credits_System_common}}  /{{System_common}}</th>
-         </tr>
-         <tr>
-            <th>学部・学科共通科目 システム理化学科共通科目</th>
-            <th>{{credits_System}}  /{{System}}</th>
-         </tr>
-         <tr>
-            <th>一般教養科目</th>
-            <th>{{credits_General}}  /{{General}}</th>
-         </tr>
-         <tr>
-            <th>一般教養科目 外国語科目</th>
-            <th>{{credits_General_foreign}}  /{{General_foreign}}</th>
-         </tr>
-         <tr>
-            <th>一般教養科目 地域連携科目</th>
-            <th>{{credits_General_local}}  /{{General_local}}</th>
-         </tr>
-         <tr>
-            <th>一般教養科目 人と社会に関する科目</th>
-            <th>{{credits_General_human}}  /{{General_human}}</th>
-         </tr>
-        </table>
-         {% endif %}
+                <tbody>
+                    <tr>
+                        <th class="name">コース科目 A群</th>
+                        <th class="is-open">{{credits_CourseA}}  /{{Course_A}}</th>
+                     </tr>
+                     <tr>
+                        <th>コース科目 B群</th>
+                        <th>{{credits_CourseB}}  /{{Course_B}}</th>
+                     </tr>
+                     <tr>
+                        <th>コース科目 C群</th>
+                        <th>{{credits_CourseC}}  /{{Course_C}}</th>
+                     </tr>
+                     <tr>
+                        <th>学部・学科共通科目 理工学部共通科目</th>
+                        <th>{{credits_System_common}}  /{{System_common}}</th>
+                     </tr>
+                     <tr>
+                        <th>学部・学科共通科目 システム理化学科共通科目</th>
+                        <th>{{credits_System}}  /{{System}}</th>
+                     </tr>
+                     <tr>
+                        <th>一般教養科目</th>
+                        <th>{{credits_General}}  /{{General}}</th>
+                     </tr>
+                     <tr>
+                        <th>一般教養科目 外国語科目</th>
+                        <th>{{credits_General_foreign}}  /{{General_foreign}}</th>
+                     </tr>
+                     <tr>
+                        <th>一般教養科目 地域連携科目</th>
+                        <th>{{credits_General_local}}  /{{General_local}}</th>
+                     </tr>
+                     <tr>
+                        <th>一般教養科目 人と社会に関する科目</th>
+                        <th>{{credits_General_human}}  /{{General_human}}</th>
+                     </tr>
+                </tbody>
+            </table>
+            {% endif %}
          {{mode}}
-         <a href="{% url 'proffesional:main' %}">戻る</a>     -->
+         <a href="{% url 'proffesional:main' %}">戻る</a>  -->
+
+
+   </div>
+   
 </body>
 
 

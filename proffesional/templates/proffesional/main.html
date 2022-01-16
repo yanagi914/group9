@@ -51,10 +51,12 @@
     <form action="{% url 'proffesional:main' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <input type="file" class="dropify" data-default-file="生殺与奪の権をファイルに握らせろ！！！" name="csv">
-      <div class="right"><button type="submit" class="btn" name="button">結果を見る</button></div>
+      
 
-      <input type="radio" name="choice_output" value="1">卒業要件
-      <input type="radio" name="choice_output" value="0">卒業研究着手要件
+      <input type="radio" name="choice_output" value="1" required>卒業要件
+      <input type="radio" name="choice_output" value="0" required>卒業研究着手要件
+      <br>  
+     <button type="submit" class="btn" name="button">結果を見る</button>
     </form>
   </div>
 
