@@ -32,7 +32,7 @@ def main(request):
 
         # csvを取り込む
         models.My_Grades.objects.all().delete() #My_Gradesをまず初期化
-        form_data = TextIOWrapper(request.FILES['csv'].file, encoding='ansi')
+        form_data = TextIOWrapper(request.FILES['csv'].file, encoding='cp932')
         csv_file = csv.reader(form_data)
 
         csv_list = [row for row in csv_file]
