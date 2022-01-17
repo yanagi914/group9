@@ -154,7 +154,134 @@
 
 
    </div>
-   
+   <table border="1">
+      {% for courseAsubject in Course_A_subject_list2 %}
+         {%if forloop.first%}
+         <tr>
+            <th>コース科目 A群</th>
+            <th>{{ courseAsubject }}</th>
+         </tr>
+         {%else%}
+         <tr>
+            <th></th>
+            <th>{{ courseAsubject }}</th>
+         </tr>
+         {%endif%}
+      {% endfor %}
+      </table>
+
+      <table border="1">
+         {% for courseBsubject in Course_B_subject_list2 %}
+            {%if forloop.first%}
+            <tr>
+               <th>コース科目 B群</th>
+               <th>{{ courseBsubject }}</th>
+            </tr>
+            {%else%}
+            <tr>
+               <th></th>
+               <th>{{ courseBsubject }}</th>
+            </tr>
+            {%endif%}
+         {% endfor %}
+      </table>
+
+      <table border="1">
+         {% for courseCsubject in Course_C_subject_list2 %}
+            {%if forloop.first%}
+            <tr>
+               <th>コース科目 C群</th>
+               <th>{{ courseCsubject }}</th>
+            </tr>
+            {%else%}
+            <tr>
+               <th></th>
+               <th>{{ courseCsubject }}</th>
+            </tr>
+            {%endif%}
+         {% endfor %}
+      </table>
+
+      <table border="1">
+         {% for systemcommon in System_common_list_sub2 %}
+            {%if forloop.first%}
+            <tr>
+               <th>学部・学科共通科目 理工学部共通科目</th>
+               <th>{{ systemcommon }}</th>
+            </tr>
+            {%else%}
+            <tr>
+               <th></th>
+               <th>{{ systemcommon }}</th>
+            </tr>
+            {%endif%}
+         {% endfor %}
+      </table>
+
+      <table border="1">
+         {% for systemsubject in System_subject_list_sub2 %}
+            {%if forloop.first%}
+            <tr>
+               <th>学部・学科共通科目 システム理化学科共通科目</th>
+               <th>{{ systemsubject }}</th>
+            </tr>
+            {%else%}
+            <tr>
+               <th></th>
+               <th>{{ systemsubject }}</th>
+            </tr>
+            {%endif%}
+         {% endfor %}
+      </table>
+
+      <table border="1">
+         {% for gf in General_foreign_list_sub2 %}
+            {%if forloop.first%}
+            <tr>
+               <th>一般教養科目 外国語科目</th>
+               <th>{{ gf }}</th>
+            </tr>
+            {%else%}
+            <tr>
+               <th></th>
+               <th>{{ gf }}</th>
+            </tr>
+            {%endif%}
+         {% endfor %}
+      </table>
+
+      <table border="1">
+         {% for gl in General_local_sub2 %}
+            {%if forloop.first%}
+            <tr>
+               <th>一般教養科目 地域連携科目</th>
+               <th>{{ gl }}</th>
+            </tr>
+            {%else%}
+            <tr>
+               <th></th>
+               <th>{{ gl }}</th>
+            </tr>
+            {%endif%}
+         {% endfor %}
+      </table>
+
+      <table border="1">
+         {% for gh in General_human_list_sub2 %}
+            {%if forloop.first%}
+            <tr>
+               <th>一般教養科目 人と社会に関する科目</th>
+               <th>{{ gh }}</th>
+            </tr>
+            {%else%}
+            <tr>
+               <th></th>
+               <th>{{ gh }}</th>
+            </tr>
+            {%endif%}
+         {% endfor %}
+      </table>
+      <a href="{% url 'proffesional:main' %}">戻る</a>   
 </body>
 
 
