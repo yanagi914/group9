@@ -77,13 +77,27 @@ def main(request):
             My_Grade_list = models.My_Grades.objects.all()
             #単位数データをリストに格納
             Course_A_subject_list = models.Course_A_subject.objects.all()
+            Course_A_subject_list2 = []
             Course_B_subject_list = models.Course_B_subject.objects.all()
+            Course_B_subject_list2 = []
             Course_C_subject_list = models.Course_C_subject.objects.all()
+            Course_C_subject_list2 = []
             System_common_list = models.System_common_subject.objects.all()
             System_subject_list = models.System_subject.objects.all()
             General_foreign_list = models.General_foreignlang_subject.objects.all()
             General_local_list = models.General_local_subject.objects.all()
             General_human_list = models.General_human_subject.objects.all()
+            #取っていない科目を表示させる用
+            System_common_list_sub = models.System_common_subject_sub.objects.all()
+            System_common_list_sub2 = []
+            System_subject_list_sub = models.System_subject_sub.objects.all()
+            System_subject_list_sub2 = []
+            General_foreign_list_sub = models.General_foreignlang_subject_sub.objects.all()
+            General_foreign_list_sub2 = []
+            General_local_list_sub = models.General_local_subject_sub.objects.all()
+            General_local_list_sub2 = []
+            General_human_list_sub = models.General_human_subject_sub.objects.all()
+            General_human_list_sub2 = []
 
             #合計単位数
             Course_A_Credits = 0
@@ -145,13 +159,27 @@ def main(request):
             My_Grade_list = models.My_Grades.objects.all()
             #単位数データをリストに格納
             Course_A_subject_list = models.Course_A_subject.objects.all()
+            Course_A_subject_list2 = []
             Course_B_subject_list = models.Course_B_subject.objects.all()
+            Course_B_subject_list2 = []
             Course_C_subject_list = models.Course_C_subject.objects.all()
+            Course_C_subject_list2 = []
             System_common_list = models.System_common_subject.objects.all()
             System_subject_list = models.System_subject.objects.all()
             General_foreign_list = models.General_foreignlang_subject.objects.all()
             General_local_list = models.General_local_subject.objects.all()
             General_human_list = models.General_human_subject.objects.all()
+            #取っていない科目を表示させる用
+            System_common_list_sub = models.System_common_subject_sub.objects.all()
+            System_common_list_sub2 = []
+            System_subject_list_sub = models.System_subject_sub.objects.all()
+            System_subject_list_sub2 = []
+            General_foreign_list_sub = models.General_foreignlang_subject_sub.objects.all()
+            General_foreign_list_sub2 = []
+            General_local_list_sub = models.General_local_subject_sub.objects.all()
+            General_local_list_sub2 = []
+            General_human_list_sub = models.General_human_subject_sub.objects.all()
+            General_human_list_sub2 = []
 
             #合計単位数
             Course_A_Credits = 0
