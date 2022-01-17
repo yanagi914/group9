@@ -109,34 +109,70 @@ def main(request):
             General_local_Credits = 0
             General_human_Credits = 0
 
+#取っていない科目を表示させるところ
+            for courseAsubject in Course_A_subject_list:
+                Course_A_subject_list2.append(courseAsubject.subject_name)
+            for courseBsubject in Course_B_subject_list:
+                Course_B_subject_list2.append(courseBsubject.subject_name)
+            for courseCsubject in Course_C_subject_list:
+                Course_C_subject_list2.append(courseCsubject.subject_name)
+            for systemCommonsubject in System_common_list_sub:
+                System_common_list_sub2.append(systemCommonsubject.subject_name)
+            for systemsubject in System_subject_list_sub:
+                System_subject_list_sub2.append(systemsubject.subject_name)
+            for generalforeignlang in General_foreign_list_sub:
+                General_foreign_list_sub2.append(generalforeignlang.subject_name)
+            for generalhuman in General_human_list_sub:
+                General_human_list_sub2.append(generalhuman.subject_name)
+            for generallocal in General_local_list_sub:
+                General_local_list_sub2.append(generallocal.subject_name)
+
             #照合処理・単位計算
             for mygrade in My_Grade_list:
                 for courseAsubject in Course_A_subject_list:
                     if mygrade.subject_code == courseAsubject.subject_code:
                         Course_A_Credits += mygrade.pass_or_fail * courseAsubject.credit
+                        Course_A_subject_list2.remove(courseAsubject.subject_name)
                 for courseBsubject in Course_B_subject_list:
                     if mygrade.subject_code == courseBsubject.subject_code:
                         Course_B_Credits += mygrade.pass_or_fail * courseBsubject.credit
+                        Course_B_subject_list2.remove(courseBsubject.subject_name)
                 for courseCsubject in Course_C_subject_list:
                     if mygrade.subject_code == courseCsubject.subject_code:
                         Course_C_Credits += mygrade.pass_or_fail * courseCsubject.credit
+                        Course_C_subject_list2.remove(courseCsubject.subject_name)
 
                 for systemcommonsubject in System_common_list:
                     if mygrade.subject_code == systemcommonsubject.subject_code:
                         System_common_Credits += mygrade.pass_or_fail * systemcommonsubject.credit
+                        for scs in System_common_list_sub2:
+                            if (systemcommonsubject.subject_name.startswith(scs)):
+                                System_common_list_sub2.remove(scs)
                 for systemsubject in System_subject_list:
                     if mygrade.subject_code == systemsubject.subject_code:
                         System_Credits += mygrade.pass_or_fail * systemsubject.credit
+                        for sss in System_subject_list_sub2:
+                            if (systemsubject.subject_name.startswith(sss)):
+                                System_subject_list_sub2.remove(sss)
 
                 for general_foreign_subject in General_foreign_list:
                     if mygrade.subject_code == general_foreign_subject.subject_code:
                         General_foreign_Credits += mygrade.pass_or_fail * general_foreign_subject.credit
+                        for gfs in General_foreign_list_sub2:
+                            if (general_foreign_subject.subject_name.startswith(gfs)):
+                                General_foreign_list_sub2.remove(gfs)
                 for general_local_subject in General_local_list:
                     if mygrade.subject_code == general_local_subject.subject_code:
                         General_local_Credits += mygrade.pass_or_fail * general_local_subject.credit
+                        for gls in General_local_list_sub2:
+                            if (general_local_subject.subject_name.startswith(gls)):
+                                General_local_list_sub2.remove(gls)
                 for general_human_subject in General_human_list:
                     if mygrade.subject_code == general_human_subject.subject_code:
                         General_human_Credits += mygrade.pass_or_fail * general_human_subject.credit
+                        for ghs in General_human_list_sub2:
+                            if (general_human_subject.subject_name.startswith(ghs)):
+                                General_human_list_sub2.remove(ghs)
 
             General_Credits = General_foreign_Credits + General_local_Credits + General_human_Credits
 
@@ -152,7 +188,15 @@ def main(request):
                 'credits_General_human':General_human_Credits,
                 'mode':mode,
                 'error_message':error_message,
-                'output':output
+                'output':output,
+                'Course_A_subject_list2':Course_A_subject_list2,
+                'Course_B_subject_list2':Course_B_subject_list2,
+                'Course_C_subject_list2':Course_C_subject_list2,
+                'System_subject_list_sub2':System_subject_list_sub2,
+                'System_common_list_sub2':System_common_list_sub2,
+                'General_foreign_list_sub2':General_foreign_list_sub2,
+                'General_human_list_sub2':General_human_list_sub2,
+                'General_local_list_sub2':General_local_list_sub2,
             }
         elif mode == "kakuteiseiseki":
             #自分の成績をリストに格納
@@ -169,7 +213,6 @@ def main(request):
             General_foreign_list = models.General_foreignlang_subject.objects.all()
             General_local_list = models.General_local_subject.objects.all()
             General_human_list = models.General_human_subject.objects.all()
-            #取っていない科目を表示させる用
             System_common_list_sub = models.System_common_subject_sub.objects.all()
             System_common_list_sub2 = []
             System_subject_list_sub = models.System_subject_sub.objects.all()
@@ -192,42 +235,78 @@ def main(request):
             General_human_Credits = 0
             tmp_list = []
 
+            #取っていない科目を表示させるところ
+            for courseAsubject in Course_A_subject_list:
+                Course_A_subject_list2.append(courseAsubject.subject_name)
+            for courseBsubject in Course_B_subject_list:
+                Course_B_subject_list2.append(courseBsubject.subject_name)
+            for courseCsubject in Course_C_subject_list:
+                Course_C_subject_list2.append(courseCsubject.subject_name)
+            for systemCommonsubject in System_common_list_sub:
+                System_common_list_sub2.append(systemCommonsubject.subject_name)
+            for systemsubject in System_subject_list_sub:
+                System_subject_list_sub2.append(systemsubject.subject_name)
+            for generalforeignlang in General_foreign_list_sub:
+                General_foreign_list_sub2.append(generalforeignlang.subject_name)
+            for generalhuman in General_human_list_sub:
+                General_human_list_sub2.append(generalhuman.subject_name)
+            for generallocal in General_local_list_sub:
+                General_local_list_sub2.append(generallocal.subject_name)
+
             #照合処理・単位計算
             for mygrade in My_Grade_list:
                 for courseAsubject in Course_A_subject_list:
                     if (courseAsubject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False: #srartswithは先頭一致を調べる関数
                         Course_A_Credits += mygrade.pass_or_fail * courseAsubject.credit
                         mygrade.isCheckedFlag = True
+                        Course_A_subject_list2.remove(courseAsubject.subject_name)
                 for courseBsubject in Course_B_subject_list:
                     if (courseBsubject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False:
                         Course_B_Credits += mygrade.pass_or_fail * courseBsubject.credit
                         mygrade.isCheckedFlag = True
+                        Course_B_subject_list2.remove(courseBsubject.subject_name)
                 for courseCsubject in Course_C_subject_list:
                     if (courseCsubject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False:
                         Course_C_Credits += mygrade.pass_or_fail * courseCsubject.credit
                         mygrade.isCheckedFlag = True
+                        Course_C_subject_list2.remove(courseCsubject.subject_name)
 
                 for systemcommonsubject in System_common_list:
                     if (systemcommonsubject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False:
                         System_common_Credits += mygrade.pass_or_fail * systemcommonsubject.credit
                         mygrade.isCheckedFlag = True
+                        for scs in System_common_list_sub2:
+                            if (systemcommonsubject.subject_name.startswith(scs)):
+                                System_common_list_sub2.remove(scs)
                 for systemsubject in System_subject_list:
                     if (systemsubject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False:
                         System_Credits += mygrade.pass_or_fail * systemsubject.credit
                         mygrade.isCheckedFlag = True
+                        for sss in System_subject_list_sub2:
+                            if (systemsubject.subject_name.startswith(sss)):
+                                System_subject_list_sub2.remove(sss)
 
                 for general_foreign_subject in General_foreign_list:
                     if (general_foreign_subject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False:
                         General_foreign_Credits += mygrade.pass_or_fail * general_foreign_subject.credit
                         mygrade.isCheckedFlag = True
+                        for gfs in General_foreign_list_sub2:
+                            if (general_foreign_subject.subject_name.startswith(gfs)):
+                                General_foreign_list_sub2.remove(gfs)
                 for general_local_subject in General_local_list:
                     if (general_local_subject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False:
                         General_local_Credits += mygrade.pass_or_fail * general_local_subject.credit
                         mygrade.isCheckedFlag = True
+                        for gls in General_local_list_sub2:
+                            if (general_local_subject.subject_name.startswith(gls)):
+                                General_local_list_sub2.remove(gls)
                 for general_human_subject in General_human_list:
                     if (general_human_subject.subject_name.startswith(mygrade.subject_name)) and mygrade.isCheckedFlag == False:
                         General_human_Credits += mygrade.pass_or_fail * general_human_subject.credit
                         mygrade.isCheckedFlag = True
+                        for ghs in General_human_list_sub2:
+                            if (general_human_subject.subject_name.startswith(ghs)):
+                                General_human_list_sub2.remove(ghs)
 
             General_Credits = General_foreign_Credits + General_local_Credits + General_human_Credits
 
@@ -244,7 +323,15 @@ def main(request):
                 'mode':mode,
                 'tmp_list':tmp_list,
                 'error_message':error_message,
-                'output':output
+                'output':output,
+                'Course_A_subject_list2':Course_A_subject_list2,
+                'Course_B_subject_list2':Course_B_subject_list2,
+                'Course_C_subject_list2':Course_C_subject_list2,
+                'System_subject_list_sub2':System_subject_list_sub2,
+                'System_common_list_sub2':System_common_list_sub2,
+                'General_foreign_list_sub2':General_foreign_list_sub2,
+                'General_human_list_sub2':General_human_list_sub2,
+                'General_local_list_sub2':General_local_list_sub2,
             }
 
 
