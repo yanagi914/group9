@@ -36,8 +36,22 @@ class General_foreignlang_subject(models.Model):
     credit = models.FloatField('単位数',blank=False,default=0)
     compulsory_or_elective = models.CharField('必修・選択', blank=True, max_length=100)
 
+#一般教養科目 外国語科目 サブ
+class General_foreignlang_subject_sub(models.Model):
+    subject_name = models.CharField('科目名', blank=True, max_length=100)
+    subject_code = models.CharField('授業コード', blank=False, max_length=10)
+    credit = models.FloatField('単位数',blank=False,default=0)
+    compulsory_or_elective = models.CharField('必修・選択', blank=True, max_length=100)
+
 #一般教養科目 地域連携科目
 class General_local_subject(models.Model):
+    subject_name = models.CharField('科目名', blank=True, max_length=100)
+    subject_code = models.CharField('授業コード', blank=False, max_length=10)
+    credit = models.FloatField('単位数',blank=False,default=0)
+    compulsory_or_elective = models.CharField('必修・選択', blank=True, max_length=100)
+
+#一般教養科目 地域連携科目 サブ
+class General_local_subject_sub(models.Model):
     subject_name = models.CharField('科目名', blank=True, max_length=100)
     subject_code = models.CharField('授業コード', blank=False, max_length=10)
     credit = models.FloatField('単位数',blank=False,default=0)
@@ -50,6 +64,13 @@ class General_human_subject(models.Model):
     credit = models.FloatField('単位数',blank=False,default=0)
     compulsory_or_elective = models.CharField('必修・選択', blank=True, max_length=100)
 
+#一般教養科目 人と社会に関する科目 サブ
+class General_human_subject_sub(models.Model):
+    subject_name = models.CharField('科目名', blank=True, max_length=100)
+    subject_code = models.CharField('授業コード', blank=False, max_length=10)
+    credit = models.FloatField('単位数',blank=False,default=0)
+    compulsory_or_elective = models.CharField('必修・選択', blank=True, max_length=100)
+
 #学部・学科共通科目 理工学部共通科目
 class System_common_subject(models.Model):
     subject_name = models.CharField('科目名', blank=True, max_length=100)
@@ -57,8 +78,22 @@ class System_common_subject(models.Model):
     credit = models.FloatField('単位数',blank=False,default=0)
     compulsory_or_elective = models.CharField('必修・選択', blank=True, max_length=100)
 
+#学部・学科共通科目 理工学部共通科目 サブ
+class System_common_subject_sub(models.Model):
+    subject_name = models.CharField('科目名', blank=True, max_length=100)
+    subject_code = models.CharField('授業コード', blank=False, max_length=10)
+    credit = models.FloatField('単位数',blank=False,default=0)
+    compulsory_or_elective = models.CharField('必修・選択', blank=True, max_length=100)
+
 #学部・学科共通科目 システム理化学科共通科目
 class System_subject(models.Model):
+    subject_name = models.CharField('科目名', blank=True, max_length=100)
+    subject_code = models.CharField('授業コード', blank=False, max_length=10)
+    credit = models.FloatField('単位数',blank=False,default=0)
+    compulsory_or_elective = models.CharField('必修・選択', blank=True, max_length=100)
+
+#学部・学科共通科目 システム理化学科共通科目 サブ
+class System_subject_sub(models.Model):
     subject_name = models.CharField('科目名', blank=True, max_length=100)
     subject_code = models.CharField('授業コード', blank=False, max_length=10)
     credit = models.FloatField('単位数',blank=False,default=0)
