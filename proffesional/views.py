@@ -231,7 +231,7 @@ def main(request):
                 'General':24.0,
                 'General_foreign':9.0,
                 'General_local':2.0,
-                'General_human':13.0
+                'General_human':12.0
             }
 
             option.update(temp_dict)
